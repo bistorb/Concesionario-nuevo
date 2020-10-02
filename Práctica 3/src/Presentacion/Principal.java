@@ -1,9 +1,7 @@
 package Presentacion;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 import Dominio.*;
 
@@ -16,6 +14,8 @@ class excepcionPassword extends Exception {
 class Principal {
 	static Scanner sc = new Scanner(System.in);
 
+	//prueba
+	
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		// Cargar los datos
 
