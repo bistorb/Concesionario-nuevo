@@ -33,14 +33,9 @@ class Principal {
 				System.out.println("03| Insertar un vehiculo");
 				System.out.println("04| Modificar un vehiculo");
 				System.out.println("05| Eliminar un vehiculo");
-				System.out.println("06| Eliminar todas los vehiculos");
-				System.out.println("07| Mostrar todos los extras");
-				System.out.println("08| Buscar un extra");
-				System.out.println("09| Insertar un extra");
-				System.out.println("10| Modificar un extra");
-				System.out.println("11| Eliminar un extra");
-				System.out.println("12| Eliminar todos los extras");
-				System.out.println("13| Salir");
+				System.out.println("06| Mostrar todos los extras");
+				System.out.println("07| Insertar un extra");
+				System.out.println("08| Salir");
 				opcion = sc.nextInt();
 
 				switch (opcion) {
@@ -60,27 +55,12 @@ class Principal {
 					eliminarVehiculo();
 					break;
 				case 6:
-					eliminarTodosLosVehiculos();
-					break;
-				case 7:
 					mostrarTodosLosExtras();
 					break;
-				case 8:
-					buscarExtra();
-					break;
-				case 9:
+				case 7:
 					insertarExtra();
 					break;
-				case 10:
-					modificarExtra();
-					break;
-				case 11:
-					eliminarExtra();
-					break;
-				case 12:
-					eliminarTodosLosExtras();
-					break;
-				case 13:
+				case 8:
 					System.out.println("¡Hasta la próxima!");
 					break;
 				default:
@@ -92,86 +72,6 @@ class Principal {
 				sc.nextLine();
 			}
 		} while (opcion != 13);
-	}
-
-
-	public static void eliminarTodosLosExtras() throws ClassNotFoundException {
-		//Se eliminan todos los extras 
-		Extra eliminarTodosLosExtras = new Extra();
-		//Llama a eliminarTodo de la clase ExtraDao
-		eliminarTodosLosExtras.eliminarTodo();
-
-	}
-
-	public static void eliminarExtra() throws ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
-		//Se identifica al extra por su id
-		System.out.println("Indica el Id");
-		int id = sc.nextInt();
-		Extra delExtra = new Extra();
-		delExtra = delExtra.leerExtras(id);
-		//LLama al metodo eliminar la clase ExtraDao
-		if (delExtra != null) {
-			delExtra.eliminar();
-
-		} else {
-			//En caso de no encontrar dicho extra, imprimirá lo siguiente
-			System.out.printf("No existe el Extra con el Id %d\n", id);
-		}
-	}
-
-	public static void modificarExtra() throws ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
-
-		Extra modExtra = new Extra();
-		//Se identifica al extra por su id
-		System.out.println("Indica el Id");
-		int id = sc.nextInt();
-		modExtra = modExtra.leerExtras(id);
-		//En caso de que el extra exista:
-		if (modExtra != null) {
-			System.out.println("¿Qué deseas modificar?");
-			System.out.println("1. Id");
-			System.out.println("2. Descripción");
-			int opcion = sc.nextInt();
-			switch (opcion) {
-			case 1:
-				boolean repetido = false;
-				do {
-					//Pide el id por teclado y lo modifica
-					repetido = false;
-					System.out.println("Introduce el nuevo Id");
-					int Id = sc.nextInt();
-					Extra existeExtra = new Extra();
-					existeExtra = existeExtra.leerExtras(Id);
-					//En caso de que el id ya esté en uso:
-					if (existeExtra != null) {
-						if (existeExtra.getId() == Id) {
-							System.out.println("Id repetido");
-							repetido = true;
-						}
-					} else {
-
-						modExtra.setId(Id);
-					}
-				} while (repetido);
-				break;
-			case 2:
-				//Pide la nueva descripción por teclado y la modifica
-				System.out.println("Introduce la descripcion");
-				sc.nextLine();
-				String descripcion = sc.nextLine();
-				modExtra.setDescripcion(descripcion);
-				break;
-
-			}
-			//Se actualiza la BBDD con la modificación del extra
-			modExtra.actualizar(id);
-			//En caso de que no encuentre el extra:
-		} else {
-			System.out.printf("No existe el extra con el Id %d\n", id);
-
-		}
 	}
 
 	public static void insertarExtra() throws ClassNotFoundException {
@@ -208,22 +108,6 @@ class Principal {
 		newExtra.insertar();
 	}
 
-	public static void buscarExtra() throws ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
-		//Se busa el extra poe el id introducidp por teclado
-		System.out.println("Indica el id");
-		int id = sc.nextInt();
-		Extra leerExtras = new Extra();
-		leerExtras = leerExtras.leerExtras(id);
-		//En caso de encontrar el extra se llama al ToString de Extra
-		if (leerExtras != null) {
-			System.out.println(leerExtras.toString());
-		//En caso de no encontrarlo se imprimirá el siguiente mensaje
-		} else {
-			System.out.printf("No existe el extra con el id %d\n", id);
-		}
-	}
-
 	public static void mostrarTodosLosExtras() throws ClassNotFoundException {
 		boolean sinExtras = true;
 		Extra buscarExtra = new Extra();
@@ -241,13 +125,6 @@ class Principal {
 		}
 	}
 
-	public static void eliminarTodosLosVehiculos() throws ClassNotFoundException {
-		//LLama al método eliminarTodo en la clase CamionDao y TurismoDao
-		Vehiculo eliminarTodosVehiculos = new Camion();
-		eliminarTodosVehiculos.eliminarTodo();
-		eliminarTodosVehiculos = new Turismo();
-		eliminarTodosVehiculos.eliminarTodo();
-	}
 
 	public static void modificarVehiculo() throws IOException, ClassNotFoundException {
 		Scanner sc = new Scanner(System.in);
