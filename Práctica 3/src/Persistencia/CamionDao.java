@@ -13,14 +13,13 @@ import java.util.ArrayList;
 
 
 public class CamionDao extends VehiculoDao  {
+	
 	public CamionDao() {
 		
 	}
+	
 	public boolean insertar(Vehiculo camiones) throws ClassNotFoundException {
 		boolean registrar = false;
-		
-		
-		
 		return registrar;
 	}
  
@@ -49,25 +48,18 @@ public class CamionDao extends VehiculoDao  {
 		return null;
 
 	}
- 
-
 	
 	public Vehiculo leer(String matricula) throws ClassNotFoundException {
 		return null;
-
 	}
+	
 	public boolean actualizar(Vehiculo camiones, String matricula) throws ClassNotFoundException {
 		return false;
-		
-			
-	
 	}
- 
 	
 	public boolean eliminar(Vehiculo camiones) throws ClassNotFoundException {
-		return false;
-		
-			}
+		return false;	
+	}
 
 	public boolean eliminarTodo() throws ClassNotFoundException {
 		return false;
