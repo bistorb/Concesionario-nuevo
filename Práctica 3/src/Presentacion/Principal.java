@@ -16,6 +16,8 @@ class excepcionPassword extends Exception {
 class Principal {
 	static Scanner sc = new Scanner(System.in);
 
+	//prueba
+	
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		// Cargar los datos
 
