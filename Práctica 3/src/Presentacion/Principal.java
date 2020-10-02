@@ -1,9 +1,7 @@
 package Presentacion;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 import Dominio.*;
 
