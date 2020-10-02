@@ -23,7 +23,7 @@ public class TurismoDao extends VehiculoDao {
 		String sql2="INSERT INTO Turismos values ('" +turismos.getMatricula() + "'," + ((Turismo)turismos).getNumpuertas() + ","+ ((Turismo)turismos).getExtras().getId() + ")";
 
 		try {
-			con = Conexion.conectar();
+			//con = Conexion.conectar();
 			stm = con.createStatement();
 			stm.execute(sql);
 			stm.execute(sql2);
@@ -49,7 +49,7 @@ public class TurismoDao extends VehiculoDao {
 		Extra extras = new Extra(0, sql);
 		ArrayList<Integer> auxBeca=new ArrayList<Integer>();
 		try {
-			co = Conexion.conectar();
+			//co = Conexion.conectar();
 			stm = co.createStatement();
 			rs = stm.executeQuery(sql);
 			while (rs.next()) {
@@ -66,7 +66,7 @@ public class TurismoDao extends VehiculoDao {
 			}
 
 			for (int i = 0; i < listaVehiculos.size(); i++) {
-				co = Conexion.conectar();
+				//co = Conexion.conectar();
 				stm = co.createStatement();
 				sql = "SELECT * FROM Vehiculos WHERE Matricula='" + listaVehiculos.get(i).getMatricula() + "'";
 				rs = stm.executeQuery(sql);
@@ -99,7 +99,7 @@ public class TurismoDao extends VehiculoDao {
 		int auxExtras=0;
 	    boolean encontrado=false;
 		try {
-			co = Conexion.conectar();
+			//co = Conexion.conectar();
 			stm = co.createStatement();
 			rs = stm.executeQuery(sql);
 			while (rs.next()) {
@@ -116,7 +116,7 @@ public class TurismoDao extends VehiculoDao {
 			((Turismo)leerVehiculos).setExtras(extras);
 			}
 			if (leerVehiculos != null) {
-				co = Conexion.conectar();
+				//co = Conexion.conectar();
 				stm = co.createStatement();
 				sql = "SELECT * FROM Vehiculos WHERE matricula='" + leerVehiculos.getMatricula() + "'";
 				rs = stm.executeQuery(sql);
@@ -144,7 +144,7 @@ public class TurismoDao extends VehiculoDao {
 			String sql="UPDATE Vehiculos SET matricula ='"+turismos.getMatricula()+"', marca= '"+turismos.getMarca()+"', modelo= '"+turismos.getModelo()+"', color= '"+turismos.getColor()+"', precio= "+turismos.getPrecio()+" WHERE matricula='"+turismos.getMatricula()+"'";
 			String sql2="UPDATE Turismos SET matricula = '"+turismos.getMatricula()+"', numero de puertas= "+((Turismo)turismos).getNumpuertas()+", extras= "+((Turismo)turismos).getExtras()+" WHERE matricula='"+turismos.getMatricula()+"'";
 		try {
-			connect=Conexion.conectar();
+			//connect=Conexion.conectar();
 			stm=connect.createStatement();
 			stm.execute(sql);
 			stm.execute(sql2);
@@ -161,7 +161,7 @@ public class TurismoDao extends VehiculoDao {
 			String sql3="DELETE FROM Turismos WHERE matricula='"+matricula+"'";
 			String sql4="DELETE FROM Vehiculos WHERE matricula='"+matricula+"'";
 		try {
-			connect=Conexion.conectar();
+			//connect=Conexion.conectar();
 			stm=connect.createStatement();
 			stm.execute(sql);
 			stm.execute(sql2);
@@ -188,7 +188,7 @@ public class TurismoDao extends VehiculoDao {
 		String sql="DELETE FROM Turismos WHERE matricula='"+turismos.getMatricula()+"'";
 		String sql2="DELETE FROM Vehiculos WHERE matricula='"+turismos.getMatricula()+"'";
 		try {
-			connect = Conexion.conectar();
+			//connect = Conexion.conectar();
 			stm = connect.createStatement();
 			stm.execute(sql);
 			stm.execute(sql2);
@@ -209,11 +209,11 @@ public class TurismoDao extends VehiculoDao {
 
 		String sql = "DELETE FROM Turismos";
 		try {
-			connect = Conexion.conectar();
+			//connect = Conexion.conectar();
 			stm = connect.createStatement();
 			stm.execute(sql);
 			sql = "DELETE FROM Vehiculos";
-			connect = Conexion.conectar();
+			//connect = Conexion.conectar();
 			stm = connect.createStatement();
 			stm.execute(sql);
 			eliminar = true;

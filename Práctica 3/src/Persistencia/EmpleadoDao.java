@@ -25,7 +25,7 @@ public class EmpleadoDao {
 		String sql = "SELECT * FROM Empleados WHERE Usuario = '" + usuario + "' AND Contraseña = '" + contraseña + "'";
 
 		try {
-			con = Conexion.conectar();
+			//con = Conexion.conectar();
 			stm = con.createStatement();
 			rs = stm.executeQuery(sql);
 			if (rs.next()) {

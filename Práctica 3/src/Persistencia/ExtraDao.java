@@ -21,7 +21,7 @@ public class ExtraDao {
 		String sql="INSERT INTO Extras values ("+extras.getId()+",'"+extras.getDescripcion()+"')";
 		
 		try {			
-			con=Conexion.conectar();
+			//con=Conexion.conectar();
 			stm= con.createStatement();
 			stm.execute(sql);
 			registrar=true;
@@ -45,7 +45,7 @@ public class ExtraDao {
 		ArrayList<Extra> listaExtras= new ArrayList<Extra>();
 		
 		try {			
-			co= Conexion.conectar();
+			//co= Conexion.conectar();
 			stm=co.createStatement();
 			rs=stm.executeQuery(sql);
 			while (rs.next()) {
@@ -71,7 +71,7 @@ public class ExtraDao {
 		Extra leerExtras = null;
 		String sql="SELECT * FROM Extras WHERE id="+id+"";
 		try {
-			co= Conexion.conectar();
+			//co= Conexion.conectar();
 			stm=co.createStatement();
 			rs=stm.executeQuery(sql);
 			while (rs.next()) {
@@ -94,7 +94,7 @@ public class ExtraDao {
 		
 		String sql="UPDATE Extras SET id="+extras.getId()+", descripcion='"+extras.getDescripcion()+"' WHERE id="+id+"";
 		try {
-			connect=Conexion.conectar();
+			//connect=Conexion.conectar();
 			stm=connect.createStatement();
 			stm.execute(sql);
 			actualizar=true;
@@ -115,7 +115,7 @@ public class ExtraDao {
 		boolean eliminar=false;
 		String sql="UPDATE Turismos SET extra=1 WHERE extra="+extras.getId()+"";
 		try {
-			connect=Conexion.conectar();
+			//connect=Conexion.conectar();
 			stm=connect.createStatement();
 			stm.execute(sql);
 			actualizar=true;
@@ -127,7 +127,7 @@ public class ExtraDao {
 		}	
 		sql="DELETE FROM Extras WHERE id="+extras.getId()+"";
 		try {
-			connect=Conexion.conectar();
+			//connect=Conexion.conectar();
 			stm=connect.createStatement();
 			stm.execute(sql);
 			eliminar=true;
@@ -146,7 +146,7 @@ public class ExtraDao {
 		boolean actualizar=false;
 		String sql="UPDATE Turismos SET extra=1";
 		try {
-			connect=Conexion.conectar();
+			//connect=Conexion.conectar();
 			stm=connect.createStatement();
 			stm.execute(sql);
 			actualizar=true;
@@ -158,7 +158,7 @@ public class ExtraDao {
 		}	
 		sql="DELETE FROM Extras WHERE id<>1";
 		try {
-			connect=Conexion.conectar();
+			//connect=Conexion.conectar();
 			stm=connect.createStatement();
 			stm.execute(sql);
 			eliminar=true;
