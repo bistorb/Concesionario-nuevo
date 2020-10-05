@@ -18,7 +18,7 @@ class Principal {
 		// Cargar los datos
 
 		Empleado emp = new Empleado();
-		ArrayList<Empleado> empleados = emp.leer();
+		ArrayList<Empleado> empleados = emp.leerEmpleado();
 		emp = login(empleados);
 
 		int opcion = 0;

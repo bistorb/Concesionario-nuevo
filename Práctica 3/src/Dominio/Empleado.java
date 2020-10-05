@@ -56,10 +56,6 @@ public class Empleado {
 		return empleadodao.leerEmpleado();
 	}
 
-	public ArrayList<Empleado> leer() {
-		return empleadodao.leer();
-
-	}
 
 	public void escribirEmpleado(ArrayList<Empleado>empleado) throws IOException{
 		empleadodao.escribirEmpleados(empleado);
