@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.*;
 
 import Persistencia.CamionDao;
-import Persistencia.TurismoDao;
-import Persistencia.VehiculoDao;
+import Persistencia.*;
+
 
 public class Camion extends Vehiculo{
  	private int capacidadcarga;
