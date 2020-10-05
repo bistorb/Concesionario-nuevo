@@ -1,4 +1,5 @@
 package Dominio;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Persistencia.ExtraDao;
@@ -72,6 +73,14 @@ public class Extra {
 	public void eliminarTodo() throws ClassNotFoundException {
 		extrasdao.eliminarTodo();
 
+	}
+	
+	public ArrayList<Extra>leerExtras()throws IOException{
+		return extrasdao.leerExtras();
+	}
+	
+	public void escribirExtras(ArrayList<Extra>extra) throws IOException{
+		extrasdao.escribirExtras(extra);
 	}
 
 	

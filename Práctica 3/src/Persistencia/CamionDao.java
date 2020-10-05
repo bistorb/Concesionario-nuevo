@@ -57,8 +57,10 @@ public class CamionDao extends VehiculoDao  {
 			out.println(camiones.get(i).getPrecio());
 			out.println("Capacidad de carga: ");
 			out.println(camiones.get(i).getCapacidadcarga());
-}
-		out.close();}
+		}
+		out.close();
+		
+	}
 	
 	public boolean insertar(Vehiculo camiones) throws ClassNotFoundException {
 		boolean registrar = false;
