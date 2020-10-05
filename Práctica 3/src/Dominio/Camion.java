@@ -1,5 +1,7 @@
 package Dominio;
-import java.util.ArrayList;
+
+import java.io.*;
+import java.util.*;
 
 import Persistencia.CamionDao;
 import Persistencia.TurismoDao;
@@ -65,6 +67,13 @@ public class Camion extends Vehiculo{
 	public void eliminarTodo() throws ClassNotFoundException {
 		camionesdao.eliminarTodo();
 
+	}
+	
+	public ArrayList<Camion>leerCamiones()throws IOException{
+		return camionesdao.leerCamiones();
+	}
+	public void escribirCamiones(ArrayList<Camion>camion) throws IOException{
+		camionesdao.escribirCamiones(camion);
 	}
 
 	
