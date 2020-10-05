@@ -1,14 +1,8 @@
 package Persistencia;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 import Dominio.*;
-
 
 public class EmpleadoDao {
 
@@ -16,36 +10,43 @@ public class EmpleadoDao {
 
 	}
 
-	public boolean comprobar(String usuario, String contraseña) throws ClassNotFoundException {
-		boolean verificar = false;
-		Statement stm = null;
-		Connection con = null;
-		ResultSet rs = null;
 
-		String sql = "SELECT * FROM Empleados WHERE Usuario = '" + usuario + "' AND Contraseña = '" + contraseña + "'";
+	public ArrayList<Empleado> leerEmpleado() throws IOException {
+		ArrayList<Empleado> empleado = new ArrayList<Empleado>();
+		Scanner in = new Scanner(new FileReader("Usuarios.txt"));
+		in.next();
 
-		try {
-			//con = Conexion.conectar();
-			stm = con.createStatement();
-			rs = stm.executeQuery(sql);
-			if (rs.next()) {
-				verificar = false;
-				System.out.println("\n¡Bienvenido al mejor concesionario de Europa!");
-			} else {
-				verificar = true;
-				System.out.println("Se han introducido de forma incorrecta los datos. Vuélvalo a intentar.");
-			}
-			stm.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("Error: Clase EmpleadoDao, método verificar");
-			System.err.println("Se han introducido mal los datos");
-			e.printStackTrace();
-			verificar = true;
+		int contador = in.nextInt();
+
+		for (int i = 0; i < contador; i++) {
+			in.next();
+			String usuario = in.next();
+			in.next();
+			String contraseña = in.nextLine();
+			Empleado emp = new Empleado(usuario, contraseña);
+			empleado.add(emp);
 		}
-		return verificar;
-	}
 
+		return empleado;
+
+	}
+	
+
+	public void escribirEmpleados(ArrayList<Empleado> empleados) throws IOException {
+		PrintWriter out = new PrintWriter(new FileWriter("Usuarios.txt"));
+		out.println("Empleado: ");
+		out.println(empleados.size());
+		
+		for (int i = 0; i < empleados.size(); i++) {
+			out.println("Nombre: ");
+			out.println(empleados.get(i).getUsuario());
+			out.println("Contraseña: ");
+			out.println(empleados.get(i).getContraseña());
+		}
+		out.close();
+		
+	}
+	
 	// abstract ArrayList<Empleado> leerEmpleados() throws FileNotFoundException;
 	// public abstract void escribirEmpleados(ArrayList<Empleado> empleados) throws
 	// FileNotFoundException ,IOException;

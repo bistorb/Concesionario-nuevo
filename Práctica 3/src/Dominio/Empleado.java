@@ -1,5 +1,7 @@
 package Dominio;
-import java.util.ArrayList;
+
+import java.io.*;
+import java.util.*;
 
 import Persistencia.CamionDao;
 import Persistencia.EmpleadoDao;
@@ -50,9 +52,15 @@ public class Empleado {
 		return "Empleado [usuario=" + usuario + ", contraseña=" + contraseña +"]";
 	}
 	
-	public boolean comprobar(String usuario, String contraseña) throws ClassNotFoundException {
-		return empleadodao.comprobar(usuario, contraseña);
-
+	public ArrayList<Empleado>leerEmpleado()throws IOException{
+		return empleadodao.leerEmpleado();
 	}
+	public void escribirEmpleado(ArrayList<Empleado>empleado) throws IOException{
+		empleadodao.escribirEmpleados(empleado);
+	}
+	
+	//public boolean comprobar(String usuario, String contraseña) throws ClassNotFoundException {
+	//	return empleadodao.comprobar(usuario, contraseña);
+	//}
 	
 }
