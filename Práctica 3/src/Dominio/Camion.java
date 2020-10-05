@@ -72,6 +72,7 @@ public class Camion extends Vehiculo{
 	public ArrayList<Camion>leerCamiones()throws IOException{
 		return camionesdao.leerCamiones();
 	}
+	
 	public void escribirCamiones(ArrayList<Camion>camion) throws IOException{
 		camionesdao.escribirCamiones(camion);
 	}
