@@ -54,5 +54,10 @@ public class Empleado {
 		return empleadodao.comprobar(usuario, contraseña);
 
 	}
+
+	public ArrayList<Empleado> leer() {
+		return empleadodao.leer();
+
+	}
 	
 }

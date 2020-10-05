@@ -18,7 +18,8 @@ class Principal {
 		// Cargar los datos
 
 		Empleado emp = new Empleado();
-		emp = login(emp);
+		ArrayList<Empleado> empleados = emp.leer();
+		emp = login(empleados);
 
 		int opcion = 0;
 		// Menú principal
@@ -534,20 +535,25 @@ class Principal {
 		}
 	}
 
-	private static Empleado login(Empleado emp) throws ClassNotFoundException {
+	private static Empleado login(ArrayList<Empleado> empleados) throws ClassNotFoundException {
 		boolean login = false;
 		String usuario;
 		String contraseña;
+		Empleado emp = null;
 		do {
 			//Se pedirá el usuario por teclado
 			System.out.println("Indíque el usuario:");
 			usuario = sc.next();
-			//Se pedirá la contraseña por teclado
+
 			System.out.println("Indíque la contraseña:");
 			contraseña = sc.next();
-			Empleado currante = new Empleado();
-			//Llama al método comprobar de la clase EmpladoDao
-			login = currante.comprobar(usuario, contraseña);
+			for(int i=0; i<empleados.size();i++) {
+				if(empleados.get(i).getUsuario().equals(usuario)&&contraseña.equals(empleados.get(i).getContraseña())) {
+					login=false;
+					emp= new Empleado(usuario,contraseña);
+					
+				}
+			}
 			//Bucle para que vuelva a ejecutarse si se han introducido mal los datos
 		} while (login == true);
 		return emp;
