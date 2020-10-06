@@ -71,9 +71,9 @@ public class TurismoDao extends VehiculoDao {
 			precio = precio.replace(".", ",");
 			out.println(precio);
 			out.println("Numpuertas:");
-			out.println(vehiculos.get(i).getNumpuertas());
+			out.println(((Turismo) vehiculos.get(i)).getNumpuertas());
 			out.println("Extra:");
-			out.println(((Turismo) Vehiculo.get(i)).getExtras().getIdExtra());
+			out.println(((Turismo) vehiculos.get(i)).getExtras().getId());
 
 		}
 		out.close();
