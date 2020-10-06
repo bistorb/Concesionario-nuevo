@@ -45,7 +45,7 @@ public class TurismoDao extends VehiculoDao {
 				}
 			}
 			Vehiculo turismos = new Turismo (matricula, marca, modelo, color, precio, numpuertas, extra);
-			turismos.add(turismo);
+			turismo.add(turismos);
 
 		}
 
