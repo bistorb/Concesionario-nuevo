@@ -15,11 +15,20 @@ public class TurismoDao extends VehiculoDao {
 		super();
 	}
 
-	public ArrayList<Vehiculo> leerVehiculos() throws IOException {
+	public ArrayList<Vehiculo> leerTodos() {
 		ArrayList<Vehiculo> turismo = new ArrayList<Vehiculo>();
 		ExtraDao extraDao = new ExtraDao();
-		ArrayList<Extra> extras = extraDao.leerExtras();
-		Scanner out = new Scanner(new FileReader("Turismos.txt"));
+		ArrayList<Extra> extras;
+		Scanner out = null;
+		extras = null;
+		try {
+			extras = extraDao.leerExtras();
+			out = new Scanner(new FileReader("Turismos.txt"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		out.next();
 		int contador = out.nextInt();
 		// Leer productos
@@ -86,12 +95,6 @@ public class TurismoDao extends VehiculoDao {
 	}
 
 	@Override
-	public ArrayList<Vehiculo> leerTodos() throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Vehiculo leer(String matricula) throws ClassNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
@@ -114,4 +117,6 @@ public class TurismoDao extends VehiculoDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 }

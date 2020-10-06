@@ -1,4 +1,5 @@
 package Dominio;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Persistencia.CamionDao;
@@ -52,32 +53,44 @@ public class Turismo extends Vehiculo{
 		return "Turismo [Matricula: " + matricula + " | Marca: " + marca + " | " + " Modelo: " + modelo + " | " + " Color: " + color + " | " + " Precio: " + precio + "€ | " + " Número de puertas:" + numpuertas + " | " + " Extras:" + extras + "]";
 	}
 
-	public void insertar() throws ClassNotFoundException {
-		turismosdao.insertar(this);
-	}
+//	public void escribirVehiculos() throws ClassNotFoundException {
+//		turismosdao.escribirVehiculos(this);
+//	}
 
 	public ArrayList<Vehiculo> leerTodos() throws ClassNotFoundException {
 		return turismosdao.leerTodos();
-
 	}
+
+	@Override
+	public void insertar() throws ClassNotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public Vehiculo leerVehiculos(String matricula) throws ClassNotFoundException {
-		return turismosdao.leer(matricula);
-
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+	@Override
 	public void actualizar(String matricula) throws ClassNotFoundException {
-		turismosdao.actualizar(this, matricula);
-
+		// TODO Auto-generated method stub
+		
 	}
 
+	@Override
 	public void eliminar() throws ClassNotFoundException {
-		turismosdao.eliminar(this);
+		// TODO Auto-generated method stub
+		
 	}
 
+	@Override
 	public void eliminarTodo() throws ClassNotFoundException {
-		turismosdao.eliminarTodo();
-
+		// TODO Auto-generated method stub
+		
 	}
+
 
 
 	
