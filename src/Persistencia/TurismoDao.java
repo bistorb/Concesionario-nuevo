@@ -40,16 +40,16 @@ public class TurismoDao extends VehiculoDao {
 			int idExtra = out.nextInt();
 			Extra extra = new Extra();
 			for (int j = 0; j < extras.size(); j++) {
-				if (idExtra == extras.get(j).getIdExtra()) {
+				if (idExtra == extras.get(j).getId()) {
 					extra = extras.get(j);
 				}
 			}
-			Vehiculo turismo = new Turismo (matricula, marca, modelo, color, precio, numpuertas, extra);
+			Vehiculo turismos = new Turismo (matricula, marca, modelo, color, precio, numpuertas, extra);
 			turismos.add(turismo);
 
 		}
 
-		return vehiculos;
+		return turismo;
 	}
 
 	public void escribirVehiculos(ArrayList<Vehiculo> vehiculos) throws IOException {
@@ -67,13 +67,13 @@ public class TurismoDao extends VehiculoDao {
 			out.println("Color:");
 			out.println(vehiculos.get(i).getColor());
 			out.println("Precio:");
-			String precio = productos.get(i).getPrecio() + " ";
+			String precio = vehiculos.get(i).getPrecio() + " ";
 			precio = precio.replace(".", ",");
 			out.println(precio);
 			out.println("Numpuertas:");
 			out.println(vehiculos.get(i).getNumpuertas());
 			out.println("Extra:");
-			out.println(((Turismo) vehiculo.get(i)).getExtra().getIdExtra());
+			out.println(((Turismo) Vehiculo.get(i)).getExtras().getIdExtra());
 
 		}
 		out.close();
