@@ -11,5 +11,6 @@ abstract public class VehiculoDao {
 	}
 	
 	abstract public ArrayList<Vehiculo> leer();
+	abstract public Vehiculo leerVehiculos(String matricula);
 	abstract public void escribir(ArrayList<Vehiculo> vehiculos);	
 }

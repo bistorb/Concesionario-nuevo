@@ -50,7 +50,7 @@ public class Camion extends Vehiculo{
 	}
 
 	public Vehiculo leerVehiculos(String matricula) throws ClassNotFoundException {
-		return camionesdao.leer1(matricula);
+		return camionesdao.leer(matricula);
 	}
 
 

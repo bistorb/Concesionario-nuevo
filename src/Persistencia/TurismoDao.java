@@ -94,6 +94,12 @@ public class TurismoDao extends VehiculoDao {
 	public Vehiculo leer1(String matricula) throws ClassNotFoundException {
         return null;
     }
+
+	@Override
+	public Vehiculo leerVehiculos(String matricula) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
