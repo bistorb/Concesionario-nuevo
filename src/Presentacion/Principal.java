@@ -532,13 +532,16 @@ class Principal {
 			contraseña = sc.next();
 			for(int i=0; i<empleados.size();i++) {
 				if(empleados.get(i).getUsuario().equals(usuario)&&contraseña.equals(empleados.get(i).getContraseña())) {
-					login=false;
+					login=true;
 					emp= new Empleado(usuario,contraseña);
+					
 					
 				}
 			}
-			//Bucle para que vuelva a ejecutarse si se han introducido mal los datos
-		} while (login == true);
+			if(login==false) {
+				System.err.println("Usuario o Contraseña incorrectos. Vuelva a introducir los datos");
+			}
+		} while (login == false);
 		return emp;
 	}
 
