@@ -22,6 +22,7 @@ public class EmpleadoDao {
 			in.next();
 			String usuario = in.next();
 			in.next();
+			in.nextLine();
 			String contraseña = in.nextLine();
 			Empleado emp = new Empleado(usuario, contraseña);
 			empleado.add(emp);

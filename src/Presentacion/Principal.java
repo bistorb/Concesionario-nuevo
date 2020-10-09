@@ -441,6 +441,7 @@ class Principal {
 					//mostrarTodosLosExtras();
 					//Se pedirá el extra por teclado
 					System.out.println("Introduzca el extra");
+					mostrarTodosLosExtras(extras);
 					extra = sc.nextInt();
 					newExtra = new Extra();
 					newExtra = newExtra.leerExtras(extra);
