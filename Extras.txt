@@ -1,18 +1,14 @@
 Extras:
-4
+2
 id:
 1
 descripción:
-Techo paronámico
+Techo Paronámico
 id:
 2
 descripción:
-Lunas tintadas
-id:
-1
+Lunas Tintadas
+id: 
+3
 descripción:
-2
-id:
-22
-descripción:
-3445
+Aire Acondicionado
