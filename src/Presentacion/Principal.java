@@ -458,6 +458,7 @@ class Principal {
 			} while (seguir);
 			//Llama al método insertar de la clase Turismo para insertar el nuevo vehiculo
 			Vehiculo newVehiculo = new Turismo(matricula, marca, modelo, color, precio, extra, newExtra);
+			turismos.add(extra, newVehiculo);
 			newVehiculo.escribir(turismos);
 
 		}
@@ -480,7 +481,8 @@ class Principal {
 			} while (seguir);
 			//Llama al método insertar de la clase Camion para insertar el nuevo vehiculo
 			Vehiculo newVehiculo = new Camion(matricula, marca, modelo, color, precio, capacidad);
-			newVehiculo.escribir(turismos);
+			camiones.add(capacidad, newVehiculo);
+			newVehiculo.escribir(camiones);
 		}
 
 	}

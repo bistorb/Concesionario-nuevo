@@ -12,7 +12,21 @@ Precio:
 24000,0
 Numero de puertas:
 3
-extra:
+Extra:
+1
+Matricula:
+1
+Marca:
+1
+Modelo:
+1
+Color:
+1
+Precio:
+1,0
+Numero de puertas:
+1
+Extra:
 1
 Matricula:
 7892ASD
@@ -26,7 +40,7 @@ Precio:
 99999,0
 Numero de puertas:
 5
-extra:
+Extra:
 2
 Matricula:
 4352HNK
@@ -40,5 +54,5 @@ Precio:
 28000,0
 Numero de puertas:
 3
-extra:
+Extra:
 1

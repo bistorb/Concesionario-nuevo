@@ -1,6 +1,6 @@
-Camión:
-3
-Matrícula:
+Camiones:
+4
+Matricula:
 8387DWB
 Marca:
 Mercedes
@@ -8,11 +8,23 @@ Modelo:
 Actros
 Color:
 Blanco
-Capacidad:
-3500
 Precio:
+3500.0
+Capacidad de carga:
 24000
-Matrícula:
+Matricula:
+1
+Marca:
+1
+Modelo:
+1
+Color:
+1
+Precio:
+1.0
+Capacidad de carga:
+1
+Matricula:
 6753AVC
 Marca:
 Scania
@@ -20,11 +32,11 @@ Modelo:
 Bestia
 Color:
 Negro
-Capacidad:
-4000
 Precio:
+4000.0
+Capacidad de carga:
 29000
-Matrícula:
+Matricula:
 5543GHB
 Marca:
 Volvo
@@ -32,7 +44,7 @@ Modelo:
 Titan
 Color:
 Transparente
-Capacidad:
-4200
 Precio:
+4200.0
+Capacidad de carga:
 89000
