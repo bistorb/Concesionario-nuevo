@@ -22,7 +22,8 @@ public class ExtraDao {
 			in.next();
 			int id = in.nextInt();
 			in.next();
-			String descripción = in.next();
+			in.nextLine();
+			String descripción = in.nextLine();
 			Extra extra = new Extra(id,descripción);
 			extras.add(extra);
 		}

@@ -26,7 +26,8 @@ public class TurismoDao extends VehiculoDao {
 			in.next();
 			String marca = in.next();
 			in.next();
-			String modelo = in.next();
+			in.nextLine();
+			String modelo = in.nextLine();
 			in.next();
 			String color = in.next();
 			in.next();
