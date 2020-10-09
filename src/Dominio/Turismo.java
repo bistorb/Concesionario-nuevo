@@ -1,6 +1,6 @@
 package Dominio;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 import Persistencia.CamionDao;
 import Persistencia.TurismoDao;
