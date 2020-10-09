@@ -10,9 +10,9 @@ Color:
 Rojo
 Precio:
 24000,0
-Numerodepuertas:
+Numero de puertas:
 3
-extra:
+beca:
 1
 Matricula:
 7892ASD
@@ -24,9 +24,9 @@ Color:
 Gris
 Precio:
 99999,0
-Numerodepuertas:
+Numero de puertas:
 5
-extra:
+beca:
 2
 Matricula:
 4352HNK
@@ -38,7 +38,7 @@ Color:
 Rojo
 Precio:
 28000,0
-Numerodepuertas:
+Numero de puertas:
 3
-extra:
+beca:
 1
