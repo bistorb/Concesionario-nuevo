@@ -111,6 +111,7 @@ class Principal {
 		sc.nextLine();
 		String descripcion = sc.nextLine();
 		Extra newExtra = new Extra(id, descripcion);
+		extras.add(newExtra);
 		//Llama al método insertar en la clase ExtraDao
 		newExtra.escribir(extras);
 	}

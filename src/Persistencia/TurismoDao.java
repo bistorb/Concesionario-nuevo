@@ -26,7 +26,7 @@ public class TurismoDao extends VehiculoDao {
 			in.next();
 			String marca = in.next();
 			in.next();
-			in.nextLine();
+			in.nextLine();	
 			String modelo = in.nextLine();
 			in.next();
 			String color = in.next();
@@ -75,7 +75,9 @@ public class TurismoDao extends VehiculoDao {
 			out.println("Color:");
 			out.println(vehiculos.get(i).getColor());
 			out.println("Precio:");
-			out.println(vehiculos.get(i).getPrecio());
+			String precio =vehiculos.get(i).getPrecio()+"";
+			precio=precio.replace(".",",");
+			out.println(precio);
 			out.println("Numero de puertas:");
 			out.println(((Turismo)vehiculos.get(i)).getNumpuertas());
 			out.println("beca:");

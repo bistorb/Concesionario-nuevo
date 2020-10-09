@@ -16,7 +16,7 @@ public class ExtraDao {
 		Scanner in = new Scanner(new FileReader("Extras.txt"));
 		in.next();
 		int contador = in.nextInt();
-		// Leer beca
+		// Leer extra
 
 		for (int i = 0; i < contador; i++) {
 			in.next();
@@ -60,8 +60,14 @@ public class ExtraDao {
 }
 	
 	public Extra leer(int id) throws ClassNotFoundException {
-        Extra leerExtras = null;
+		ArrayList<Extra> extras = leer();
 
-        return leerExtras;
+		for(int i=0;i<extras.size();i++) {
+			if(id==extras.get(i).getId()) {
+		        return extras.get(i);
+
+			}
+		}
+		return null;
     }
 }
