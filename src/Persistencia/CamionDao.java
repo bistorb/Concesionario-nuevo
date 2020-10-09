@@ -11,102 +11,73 @@ public class CamionDao extends VehiculoDao  {
 		
 	}
 	
-	public ArrayList<Camion> leerCamiones() throws IOException {
-		ArrayList<Camion> camiones = new ArrayList<Camion>();
+	public ArrayList<Vehiculo> leer()  {
+		ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+		try {
 		Scanner in = new Scanner(new FileReader("Camiones.txt"));
 		in.next();
-
 		int contador = in.nextInt();
+		// Leer profesor
 
 		for (int i = 0; i < contador; i++) {
 			in.next();
-			String matricula = in.nextLine();
+			String matricula = in.next();
 			in.next();
-			String marca = in.nextLine();
+			String marca = in.next();
 			in.next();
 			String modelo = in.next();
 			in.next();
 			String color = in.next();
 			in.next();
-			double precio = in.nextDouble();
+			double precio=in.nextDouble();
 			in.next();
 			int capacidadcarga = in.nextInt();
-			Camion ca = new Camion(matricula, marca, modelo, color, precio, capacidadcarga);
-			camiones.add(ca);
-		}
 
-		return camiones;
-	
-}
-	
-	public void escribirCamiones(ArrayList<Camion> camiones) throws IOException {
+			Vehiculo vehiculo = new Camion(matricula, marca, modelo, color, precio, capacidadcarga);
+			vehiculos.add(vehiculo);
+		}
+		in.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("El fichero especificado no existe");
+		} catch (IOException e) {
+			System.out.println("Excepcion de entrada/salida:" + e.toString());
+			System.out.println(e.getMessage());
+		}
+		return vehiculos;
+	}
+
+	public void escribir(ArrayList<Vehiculo> vehiculos)  {
+		try {
 		PrintWriter out = new PrintWriter(new FileWriter("Camiones.txt"));
-		out.println("Camion: ");
-		out.println(camiones.size());
-		
-		for (int i = 0; i < camiones.size(); i++) {
-			out.println("Matricula: ");
-			out.println(camiones.get(i).getMatricula());
-			out.println("Marca: ");
-			out.println(camiones.get(i).getMarca());
-			out.println("Modelo: ");
-			out.println(camiones.get(i).getModelo());
-			out.println("Color: ");
-			out.println(camiones.get(i).getColor());
-			out.println("Precio: ");
-			out.println(camiones.get(i).getPrecio());
-			out.println("Capacidad de carga: ");
-			out.println(camiones.get(i).getCapacidadcarga());
+		out.println("Camiones:");
+		out.println(vehiculos.size());
+		for (int i = 0; i < vehiculos.size(); i++) {
+			out.println("Matricula:");
+			out.println(vehiculos.get(i).getMatricula());
+			out.println("Marca:");
+			out.println(vehiculos.get(i).getMarca());
+			out.println("Modelo:");
+			out.println(vehiculos.get(i).getModelo());
+			out.println("Color:");
+			out.println(vehiculos.get(i).getColor());
+			out.println("Precio:");
+			out.println(vehiculos.get(i).getPrecio());
+			out.println("Capacidad de carga:");
+			String capacidadcarga=((Camion)vehiculos.get(i)).getCapacidadcarga()+"";
+			out.println(capacidadcarga);
+
 		}
 		out.close();
-		
-	}
-	
-	public boolean insertar(Vehiculo camiones) throws ClassNotFoundException {
-		boolean registrar = false;
-		return registrar;
-	}
- 
-	
-	public ArrayList<Vehiculo> leerTodos() throws ClassNotFoundException {
-		FileReader fr = null;
-		try {
-			fr = new FileReader("Camiones.txt");
-			int letra = fr.read();
-		while(letra!=-1) {
-			System.out.print((char)letra);
-			letra = fr.read();
-		}
-			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("El fichero especificado no existe");
 		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				fr.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			System.out.println("Excepcion de entrada/salida:" + e.toString());
+			System.out.println(e.getMessage());
 		}
-		return null;
-
 	}
 	
-	public Vehiculo leer(String matricula) throws ClassNotFoundException {
-		return null;
-	}
-	
-	public boolean actualizar(Vehiculo camiones, String matricula) throws ClassNotFoundException {
-		return false;
-	}
-	
-	public boolean eliminar(Vehiculo camiones) throws ClassNotFoundException {
-		return false;	
-	}
-
-	public boolean eliminarTodo() throws ClassNotFoundException {
-		return false;
-	}
+	public Vehiculo leer1(String matricula) throws ClassNotFoundException {
+        return null;
+    }
 
 }

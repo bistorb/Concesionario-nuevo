@@ -20,6 +20,14 @@ class Principal {
 		Empleado emp = new Empleado();
 		ArrayList<Empleado> empleados = emp.leerEmpleado();
 		emp = login(empleados);
+		
+		Vehiculo camion = new Camion();
+		Vehiculo turismo = new Turismo();
+		ArrayList<Vehiculo> camiones = camion.leer();
+		ArrayList<Vehiculo> turismos = turismo.leer();
+		Extra extra = new Extra();
+		ArrayList<Extra> extras= extra.leer();
+		Scanner sc = new Scanner(System.in);
 
 		int opcion = 0;
 		// Menú principal
@@ -39,25 +47,25 @@ class Principal {
 
 				switch (opcion) {
 				case 1:
-					mostrarTodos();
+					mostrarTodos(camiones, turismos);
 					break;
 				case 2:
-					buscarVehiculo();
+					buscarVehiculo(camiones, turismos, sc);
 					break;
 				case 3:
-					insertarVehiculo();
+					insertarVehiculo(camiones, turismos, extras ,sc);
 					break;
 				case 4:
-					modificarVehiculo();
+					modificarVehiculo(camiones, turismos, extras ,sc);
 					break;
 				case 5:
-					eliminarVehiculo();
+					eliminarVehiculo(camiones, turismos, sc);
 					break;
 				case 6:
-					mostrarTodosLosExtras();
+					mostrarTodosLosExtras(extras);
 					break;
 				case 7:
-					insertarExtra();
+					insertarExtra(extras);
 					break;
 				case 8:
 					System.out.println("¡Hasta la próxima!");
@@ -73,7 +81,7 @@ class Principal {
 		} while (opcion != 13);
 	}
 
-	public static void insertarExtra() throws ClassNotFoundException {
+	public static void insertarExtra(ArrayList<Extra>extras) throws ClassNotFoundException {
 		Scanner sc = new Scanner(System.in);
 
 		boolean seguir = false;
@@ -104,29 +112,19 @@ class Principal {
 		String descripcion = sc.nextLine();
 		Extra newExtra = new Extra(id, descripcion);
 		//Llama al método insertar en la clase ExtraDao
-		newExtra.insertar();
+		newExtra.escribir(extras);
 	}
 
-	public static void mostrarTodosLosExtras() throws ClassNotFoundException {
-		boolean sinExtras = true;
-		Extra buscarExtra = new Extra();
-		//Llama al metodo leerTodos de la clase ExtraDao
-		ArrayList<Extra> extras = buscarExtra.leerTodos();
-		//For que recorre todas las posiciones de los extra para imprimirlos
+	public static void mostrarTodosLosExtras(ArrayList<Extra>extras) throws ClassNotFoundException {
+		System.out.println("Extras");
 		for (int i = 0; i < extras.size(); i++) {
 			System.out.println(extras.get(i).toString());
-			sinExtras = false;
-		}
-		//En caso de no encontrar ningún extra:
-		if (sinExtras) {
-			System.out.println("No existen extras");
 
 		}
 	}
 
 
-	public static void modificarVehiculo() throws IOException, ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
+	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, ArrayList<Extra>extras,Scanner sc) throws IOException, ClassNotFoundException {
 		Vehiculo modTurismo = new Turismo();
 		Vehiculo modCamion = new Camion();
 		//Se identifica al vehiculo por su matricula
@@ -273,7 +271,7 @@ class Principal {
 						seguir = false;
 						try {
 							//Se pide el nuevo extra por teclado
-							mostrarTodosLosExtras();
+							//mostrarTodosLosExtras();
 							System.out.println("Introduce el nuevo extra");
 							int extra = sc.nextInt();
 							Extra modExtra = new Extra(extra, Matricula);
@@ -324,11 +322,11 @@ class Principal {
 			}
 			if (modTurismo != null) {
 				//LLama al método actualizar de TurismoDao y actualiza la BBDD con las nuevas modificaciones
-				modTurismo.actualizar(Matricula);
+				modTurismo.escribir(turismos);
 
 			} else if (modCamion != null) {
 				//LLama al método actualizar de CamionDao y actualiza la BBDD con las nuevas modificaciones
-				modCamion.actualizar(Matricula);
+				modCamion.escribir(camiones);
 
 			}
 			//En caso de no encontrar ningún vehículo con dicha matrícula, le imprimirá el siguiente mensaje:
@@ -339,32 +337,32 @@ class Principal {
 
 	}
 
-	public static void eliminarVehiculo() throws IOException, ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
-		//Se identifica al vehículo por su matrícula
+	public static void eliminarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, Scanner sc) throws IOException, ClassNotFoundException {
 		System.out.println("Indica la matricula");
 		String matricula = sc.next();
-		//Llama al método leerVehiculos para ver si es Turismo o Camion
-		Vehiculo delTurismo = new Turismo();
-		delTurismo = delTurismo.leerVehiculos(matricula);
-		Vehiculo delCamion = new Camion();
-		delCamion = delCamion.leerVehiculos(matricula);
-		if (delTurismo != null) {
-			//LLama al método eliminar de TueismoDao e imprimirá el siguiente mensaje:
-			delTurismo.eliminar();
-			System.out.println("¡Se ha eliminado el turismo con éxito!");
-		} else if (delCamion != null) {
-			//Llama al método eliminar de CamionDao e imprimrá el siguiente mensaje:
-			delCamion.eliminar();
-			System.out.println("¡Se ha eliminado el camión con éxito!");
-		} else {
-			//En caso de no encontrar ningún vehículo con dicha matrícula, le imprimirá el siguiente mensaje:
-			System.out.printf("No existe el vehículo con la matricula %s\n", matricula);
+		boolean encontrado = false;
+		for (int i = 0; i < camiones.size(); i++) {
+			if (camiones.get(i).getMatricula().equals(matricula)) {
+				camiones.remove(i);
+				Vehiculo delVehiculo = new Camion();
+				delVehiculo.escribir(camiones);
+				encontrado = true;
+			}
+		}
+		for (int i = 0; i < turismos.size(); i++) {
+			if (turismos.get(i).getMatricula().equals(matricula)) {
+				turismos.remove(i);
+				Vehiculo delVehiculo = new Turismo();
+				delVehiculo.escribir(turismos);
+				encontrado = true;
+			}
+		}
+		if (encontrado == false) {
+			System.out.printf("No existe el vehiculo con matricula %s\n", matricula);
 		}
 	}
 
-	public static void insertarVehiculo() throws IOException, ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
+	public static void insertarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, ArrayList<Extra>extras,Scanner sc) throws IOException, ClassNotFoundException {
 		boolean seguir = false;
 		String matricula = "";
 		Extra newExtra = new Extra(0, matricula);
@@ -440,7 +438,7 @@ class Principal {
 				seguir = false;
 				try {
 					//Se llamará al método mostrarTodosLosExtras para imprimir todos los extras disponibles
-					mostrarTodosLosExtras();
+					//mostrarTodosLosExtras();
 					//Se pedirá el extra por teclado
 					System.out.println("Introduzca el extra");
 					extra = sc.nextInt();
@@ -460,7 +458,7 @@ class Principal {
 			} while (seguir);
 			//Llama al método insertar de la clase Turismo para insertar el nuevo vehiculo
 			Vehiculo newVehiculo = new Turismo(matricula, marca, modelo, color, precio, extra, newExtra);
-			newVehiculo.insertar();
+			newVehiculo.escribir(turismos);
 
 		}
 		int capacidad = 0;
@@ -482,56 +480,41 @@ class Principal {
 			} while (seguir);
 			//Llama al método insertar de la clase Camion para insertar el nuevo vehiculo
 			Vehiculo newVehiculo = new Camion(matricula, marca, modelo, color, precio, capacidad);
-			newVehiculo.insertar();
+			newVehiculo.escribir(turismos);
 		}
 
 	}
 
-	public static void buscarVehiculo() throws ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
-		//Se identificará al vehículo por su matrícula
+	public static void buscarVehiculo(ArrayList<Vehiculo> camiones,ArrayList<Vehiculo> turismo, Scanner sc) {
 		System.out.println("Indica la matricula");
 		String matricula = sc.next();
-		//LLama a los métodos leerVehículos de las clases TurismoDao y CamionDao
-		Vehiculo leerTurismos = new Turismo();
-		leerTurismos = leerTurismos.leerVehiculos(matricula);
-		Vehiculo leerCamiones = new Camion();
-		leerCamiones = leerCamiones.leerVehiculos(matricula);
-		if (leerTurismos != null) {
-			//En caso de encontrarlo, se imprimirá el toString con la matrícula indicada anteriormente
-			System.out.println(leerTurismos.toString());
-		} else if (leerCamiones != null) {
-			//En caso de encontrarlo, se imprimirá el toString con la matrícula indicada anteriormente
-			System.out.println(leerCamiones.toString());
-		} else {
-			//En caso de no encontrarlo, le imprimirá el siguiente mensaje:
-			System.out.printf("No existe el vehiculo con la matricula %s\n", matricula);
+		boolean encontrado = false;
+		for (int i = 0; i < turismo.size(); i++) {
+			if (turismo.get(i).getMatricula().equals(matricula)) {
+				System.out.println(turismo.get(i).toString());
+				encontrado = true;
+			}
 		}
+		for (int i = 0; i < camiones.size(); i++) {
+			if (camiones.get(i).getMatricula().equals(matricula)) {
+				System.out.println(camiones.get(i).toString());
+				encontrado = true;
+			}
+		}
+		if (encontrado == false) {
+			System.out.printf("No existe el vehiculo con esa matricula %s\n", matricula);
 
+		}
 	}
 
-	public static void mostrarTodos() throws ClassNotFoundException {
-		boolean sinVehiculos = true;
-		Vehiculo buscarVehiculo = new Turismo();
-		//LLama al método leerTodos de la clase Turismo
-		ArrayList<Vehiculo> vehiculos = buscarVehiculo.leerTodos();
-		//Bucle for que recorre las posiciones e imprime cada toString de cada posición
-		for (int i = 0; i < vehiculos.size(); i++) {
-			System.out.println(vehiculos.get(i).toString());
-			sinVehiculos = false;
+	public static void mostrarTodos(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos) {
+		System.out.println("Camoines");
+		for (int i = 0; i < camiones.size(); i++) {
+			System.out.println(camiones.get(i).toString());
 		}
-		buscarVehiculo = new Camion();
-		//LLama al método leerTodos de la clase Turismo
-		vehiculos = buscarVehiculo.leerTodos();
-		//Bucle for que recorre las posiciones e imprime cada toString de cada posición
-		for (int i = 0; i < vehiculos.size(); i++) {
-			System.out.println(vehiculos.get(i).toString());
-			sinVehiculos = false;
-		}
-		if (sinVehiculos) {
-			//En caso de que no se encuentre ningún vehículo, se imprimirá el siguiente mensaje:
-			System.out.println("Lo sentimos, no se ha encontrado ningún vehiculo.");
-
+		System.out.println("Turismos");
+		for (int i = 0; i < turismos.size(); i++) {
+			System.out.println(turismos.get(i).toString());
 		}
 	}
 

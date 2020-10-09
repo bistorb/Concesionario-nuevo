@@ -48,39 +48,17 @@ public class Extra {
 		return "Extras [ID: " + id + " | Descricion: " + descripcion + "]";
 	}
 	
-	public void insertar() throws ClassNotFoundException {
-		extrasdao.insertar(this);
+	public ArrayList<Extra> leer(){
+		return extrasdao.leer();
 	}
-
-	public ArrayList<Extra> leerTodos() throws ClassNotFoundException {
-		return extrasdao.leerTodos();
-
-	}
+	
 	public Extra leerExtras(int id) throws ClassNotFoundException {
-		return extrasdao.leer(id);
+        return extrasdao.leer(id);
 
-	}
-
-	public void actualizar(int id) throws ClassNotFoundException {
-		extrasdao.actualizar(this, id);
-
-	}
-
-	public void eliminar() throws ClassNotFoundException {
-		extrasdao.eliminar(this);
-	}
-
-	public void eliminarTodo() throws ClassNotFoundException {
-		extrasdao.eliminarTodo();
-
-	}
+    }
 	
-	public ArrayList<Extra>leerExtras()throws IOException{
-		return extrasdao.leerExtras();
-	}
-	
-	public void escribirExtras(ArrayList<Extra>extra) throws IOException{
-		extrasdao.escribirExtras(extra);
+	public void escribir(ArrayList<Extra> extras) {
+		extrasdao.escribir(extras);
 	}
 
 	

@@ -42,40 +42,17 @@ public class Camion extends Vehiculo{
 		return "Camion  [Matricula: " + matricula + " | Marca: " + marca  + " | " + " Modelo: " + modelo + " | " + " Color: " + color + " | " + " Precio: " + precio + "€ | " + " Capacidad de carga:" + capacidadcarga + "KG]";
 	}
 	
-	public void insertar() throws ClassNotFoundException {
-		camionesdao.insertar(this);
+	public ArrayList<Vehiculo> leer() {
+		return camionesdao.leer();
+	}
+	public void escribir(ArrayList<Vehiculo> vehiculos){
+		camionesdao.escribir(vehiculos);
 	}
 
-	public ArrayList<Vehiculo> leerTodos() throws ClassNotFoundException {
-		return camionesdao.leerTodos();
-
-	}
 	public Vehiculo leerVehiculos(String matricula) throws ClassNotFoundException {
-		return camionesdao.leer(matricula);
-
+		return camionesdao.leer1(matricula);
 	}
 
-	public void actualizar(String matricula) throws ClassNotFoundException {
-		camionesdao.actualizar(this, matricula);
-
-	}
-
-	public void eliminar() throws ClassNotFoundException {
-		camionesdao.eliminar(this);
-	}
-
-	public void eliminarTodo() throws ClassNotFoundException {
-		camionesdao.eliminarTodo();
-
-	}
-	
-	public ArrayList<Camion>leerCamiones()throws IOException{
-		return camionesdao.leerCamiones();
-	}
-	
-	public void escribirCamiones(ArrayList<Camion>camion) throws IOException{
-		camionesdao.escribirCamiones(camion);
-	}
 
 	
 }

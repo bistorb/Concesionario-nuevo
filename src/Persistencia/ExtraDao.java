@@ -10,87 +10,57 @@ public class ExtraDao {
 
 	}
 	
-	public ArrayList<Extra> leerExtras() throws IOException {
+	public ArrayList<Extra> leer()  {
 		ArrayList<Extra> extras = new ArrayList<Extra>();
+		try {
 		Scanner in = new Scanner(new FileReader("Extras.txt"));
 		in.next();
-
 		int contador = in.nextInt();
+		// Leer beca
 
 		for (int i = 0; i < contador; i++) {
 			in.next();
 			int id = in.nextInt();
 			in.next();
-			String descripcion = in.nextLine();
-			Extra ex = new Extra(id, descripcion);
-			extras.add(ex);
+			String descripción = in.next();
+			Extra extra = new Extra(id,descripción);
+			extras.add(extra);
 		}
-
+		in.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("El fichero especificado no existe");
+		} catch (IOException e) {
+			System.out.println("Excepcion de entrada/salida:" + e.toString());
+			System.out.println(e.getMessage());
+		}
 		return extras;
+	}
+
+	public void escribir(ArrayList<Extra> extras){
+		try {
+		PrintWriter out = new PrintWriter(new FileWriter("Extras.txt"));
+		out.println("Extras:");
+		out.println(extras.size());
+		for (int i = 0; i < extras.size(); i++) {
+			out.println("id:");
+			out.println(extras.get(i).getId());
+			out.println("descripción:");
+			out.println(extras.get(i).getDescripcion());
+
+			}
+		out.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("El fichero especificado no existe");
+		} catch (IOException e) {
+			System.out.println("Excepcion de entrada/salida:" + e.toString());
+			System.out.println(e.getMessage());
+		}
 	
 }
 	
-	public void escribirExtras(ArrayList<Extra> extra) throws IOException {
-		PrintWriter out = new PrintWriter(new FileWriter("Extras.txt"));
-		out.println("Extra: ");
-		out.println(extra.size());
-		
-		for (int i = 0; i < extra.size(); i++) {
-			out.println("ID: ");
-			out.println(extra.get(i).getId());
-			out.println("Descripcion: ");
-			out.println(extra.get(i).getDescripcion());
-		}
-		out.close();
-		
-	}
-
-	public boolean insertar(Extra extras) throws ClassNotFoundException {
-		boolean registrar = false;
-
-		return registrar;
-	}
-
-	public ArrayList<Extra> leerTodos() throws ClassNotFoundException {
-		FileReader fr = null;
-		BufferedReader br = null;
-		try {
-			fr = new FileReader("Extras.txt");
-			br = new BufferedReader(fr);
-			System.out.println(br.readLine());
-			br.readLine();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
 	public Extra leer(int id) throws ClassNotFoundException {
-		Extra leerExtras = null;
+        Extra leerExtras = null;
 
-		return leerExtras;
-	}
-
-	public boolean actualizar(Extra extras, int id) throws ClassNotFoundException {
-
-		boolean actualizar = false;
-		return actualizar;
-	}
-
-	public boolean eliminar(Extra extras) throws ClassNotFoundException {
-		boolean actualizar = false;
-		boolean eliminar = false;
-
-		return eliminar;
-	}
-
-	public boolean eliminarTodo() throws ClassNotFoundException {
-		boolean eliminar = false;
-		boolean actualizar = false;
-
-		return eliminar;
-	}
+        return leerExtras;
+    }
 }

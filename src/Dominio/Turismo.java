@@ -48,7 +48,6 @@ public class Turismo extends Vehiculo{
 		this.turismosdao = turismosdao;
 	}
 	
-	@Override
 	public String toString() {
 		return "Turismo [Matricula: " + matricula + " | Marca: " + marca + " | " + " Modelo: " + modelo + " | " + " Color: " + color + " | " + " Precio: " + precio + "€ | " + " Número de puertas:" + numpuertas + " | " + " Extras:" + extras + "]";
 	}
@@ -57,41 +56,17 @@ public class Turismo extends Vehiculo{
 //		turismosdao.escribirVehiculos(this);
 //	}
 
-	public ArrayList<Vehiculo> leerTodos() throws ClassNotFoundException {
-		return turismosdao.leerTodos();
+	public ArrayList<Vehiculo> leer(){
+		return turismosdao.leer();
 	}
-
-	@Override
-	public void insertar() throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		
+	
+	public void escribir(ArrayList<Vehiculo> vehiculos){
+		turismosdao.escribir(vehiculos);
 	}
-
-	@Override
+	
 	public Vehiculo leerVehiculos(String matricula) throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return turismosdao.leer1(matricula);
 	}
-
-	@Override
-	public void actualizar(String matricula) throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void eliminar() throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void eliminarTodo() throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 
 	
 }
