@@ -44,8 +44,9 @@ class Principal {
 				System.out.println("07| Insertar un extra");
 				System.out.println("08| Eliminar un extra");
 				System.out.println("09| Salir");
+				
+				//Al iniciar sesión con éxito, se le darán opciones al usuario
 				opcion = sc.nextInt();
-
 				switch (opcion) {
 				case 1:
 					mostrarTodos(camiones, turismos);
@@ -74,21 +75,26 @@ class Principal {
 				case 9:
 					System.out.println("¡Hasta la próxima!");
 					break;
+					//En caso de que el usuario introduzca un número fuera del rango
 				default:
-					System.out.println("Por favor, introduzca un número entre el 1 y el 13.");
+					System.out.println("Por favor, introduzca un número entre el 1 y el 9.");
 				}
 
+				//En caso de que el usuario introduzca una letra
 			} catch (InputMismatchException e) {
 				System.err.println("Introduzca un número. ");
 				sc.nextLine();
 			}
+			//Se vuelve a ejecutar si la opción introducida está fuera dentro del rango
 		} while (opcion != 9);
 	}
 	
 	public static void eliminarExtra(ArrayList<Extra> extras, Scanner sc) throws IOException {
+		//Se pide el ID por teclado
 		System.out.println("Indica el Id");
 		int id = sc.nextInt();
 		boolean encontrado = false;
+		//Recorre el fichero de extras
 		for (int i = 0; i < extras.size(); i++) {
 			if (extras.get(i).getId()==id) {
 				extras.remove(i);
@@ -98,7 +104,7 @@ class Principal {
 				break;
 			}
 		}
-
+		//En caso de no encontrar el ID
 		if (encontrado == false) {
 			System.out.printf("No existe la beca con el Id %s\n", id);
 		}		
@@ -142,18 +148,21 @@ class Principal {
 
 	public static void mostrarTodosLosExtras(ArrayList<Extra>extras) throws ClassNotFoundException {
 		System.out.println("Extras");
+		//Bucle que recorre el fichero de Extra
 		for (int i = 0; i < extras.size(); i++) {
 			System.out.println(extras.get(i).toString());
-
 		}
 	}
 
 
 	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, ArrayList<Extra>extras, Scanner sc) throws IOException {
+		//Pide la matrícula por teclado
 		System.out.println("Indica la matricula");
 		String matricula = sc.next();
 		boolean encontrado = false;
+		//Bucle que recorre el fichero Camiones
 		for (int i = 0; i < camiones.size(); i++) {
+			//En caso de que la matricula exista
 			if (camiones.get(i).getMatricula().equals(matricula)) {
 				System.out.println("¿Qué deseas modificar?");
 				System.out.println("1. Matricula");
@@ -315,25 +324,33 @@ class Principal {
 	}
 
 	public static void eliminarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, Scanner sc) throws IOException, ClassNotFoundException {
+		//Pide la matrícula por teclado
 		System.out.println("Indica la matricula");
 		String matricula = sc.next();
 		boolean encontrado = false;
+		//Bucle que recorre el fichero Camiones
 		for (int i = 0; i < camiones.size(); i++) {
 			if (camiones.get(i).getMatricula().equals(matricula)) {
+				//Método para borrar el camion
 				camiones.remove(i);
 				Vehiculo delVehiculo = new Camion();
+				//Se vuelve a escribir el fichero sin el camión borrado
 				delVehiculo.escribir(camiones);
 				encontrado = true;
 			}
 		}
+		//Bucle que recorre el fichero Turismos
 		for (int i = 0; i < turismos.size(); i++) {
 			if (turismos.get(i).getMatricula().equals(matricula)) {
+				//Método para borrar el turismo
 				turismos.remove(i);
 				Vehiculo delVehiculo = new Turismo();
+				//Se vuelve a escribir el fichero sin el turismo borrado
 				delVehiculo.escribir(turismos);
 				encontrado = true;
 			}
 		}
+		//En caso de no encontrar la matrícula introducida
 		if (encontrado == false) {
 			System.out.printf("No existe el vehiculo con matricula %s\n", matricula);
 		}
@@ -465,21 +482,25 @@ class Principal {
 	}
 
 	public static void buscarVehiculo(ArrayList<Vehiculo> camiones,ArrayList<Vehiculo> turismo, Scanner sc) {
+		//Se pide la matrícula por teclado
 		System.out.println("Indica la matricula");
 		String matricula = sc.next();
 		boolean encontrado = false;
+		//Bucle que recorre el fichero Turismoa
 		for (int i = 0; i < turismo.size(); i++) {
 			if (turismo.get(i).getMatricula().equals(matricula)) {
 				System.out.println(turismo.get(i).toString());
 				encontrado = true;
 			}
 		}
+		//Bucle que recorre el fichero Camiones
 		for (int i = 0; i < camiones.size(); i++) {
 			if (camiones.get(i).getMatricula().equals(matricula)) {
 				System.out.println(camiones.get(i).toString());
 				encontrado = true;
 			}
 		}
+		//En caso de no encontrar la matrícula
 		if (encontrado == false) {
 			System.out.printf("No existe el vehiculo con esa matricula %s\n", matricula);
 
@@ -487,12 +508,16 @@ class Principal {
 	}
 
 	public static void mostrarTodos(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos) {
-		System.out.println("Camoines");
+		System.out.println("Camiones");
+		//Bucle que recorre todo el fichero Camiones
 		for (int i = 0; i < camiones.size(); i++) {
+			//Imprime el fichero Camiones
 			System.out.println(camiones.get(i).toString());
 		}
 		System.out.println("Turismos");
+		//Bucle que recorre todo el fichero Turismos
 		for (int i = 0; i < turismos.size(); i++) {
+			//Imprime el fichero de Turismos
 			System.out.println(turismos.get(i).toString());
 		}
 	}
@@ -503,18 +528,19 @@ class Principal {
         String contraseña;
         Empleado emp = null;
         do {
-            //Se pedirá el usuario por teclado
+            //Se pedirá el usuario y contraseña por teclado
             System.out.println("Indíque el usuario:");
             usuario = sc.next();
-
             System.out.println("Indíque la contraseña:");
             contraseña = sc.next();
+            //Bucle que recorre el fichero Empleados
             for(int i=0; i<empleados.size();i++) {
                 if(empleados.get(i).getUsuario().equals(usuario)&&contraseña.equals(empleados.get(i).getContraseña())) {
                     login=true;
                     emp= new Empleado(usuario,contraseña);
                 }
             }
+            //En caso de que el usuario o contraseña estén incorrectos
             if(login==false) {
                 System.err.println("Usuario o Contraseña incorrectos. Vuelva a introducir los datos");
             }
