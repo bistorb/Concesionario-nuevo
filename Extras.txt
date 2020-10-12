@@ -1,21 +1,10 @@
-Extras:
-<<<<<<< HEAD
+Extras
 2
-=======
-3
->>>>>>> branch 'master' of https://github.com/bistorb/Concesionario-nuevo
-id:
+Identificador:
 1
-descripción:
-Techo Paronámico
-id:
+Descripción:
+Techo paronámico
+Identificador:
 2
-descripción:
-Lunas Tintadas
-<<<<<<< HEAD
-=======
-id:
-3
-descripción:
-hola
->>>>>>> branch 'master' of https://github.com/bistorb/Concesionario-nuevo
+Descripción:
+Lunas tintadas

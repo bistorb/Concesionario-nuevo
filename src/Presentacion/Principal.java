@@ -112,7 +112,6 @@ class Principal {
 		String descripcion = sc.nextLine();
 
 		Extra newExtra = new Extra(id, descripcion);
-		extras.add(newExtra);
 		//Llama al método insertar en la clase ExtraDao
 		newExtra.escribir(extras);
 	}
@@ -395,7 +394,6 @@ class Principal {
 					//mostrarTodosLosExtras();
 					//Se pedirá el extra por teclado
 					System.out.println("Introduzca el extra");
-					mostrarTodosLosExtras(extras);
 					extra = sc.nextInt();
 					newExtra = new Extra();
 					newExtra = newExtra.leerExtras(extra);
@@ -438,7 +436,6 @@ class Principal {
 			Vehiculo newVehiculo = new Camion(matricula, marca, modelo, color, precio, capacidad);
 			camiones.add(capacidad, newVehiculo);
 			newVehiculo.escribir(camiones);
-			newVehiculo.escribir(turismos);
 		}
 
 	}
@@ -490,16 +487,13 @@ class Principal {
 			contraseña = sc.next();
 			for(int i=0; i<empleados.size();i++) {
 				if(empleados.get(i).getUsuario().equals(usuario)&&contraseña.equals(empleados.get(i).getContraseña())) {
-					login=true;
+					login=false;
 					emp= new Empleado(usuario,contraseña);
-					
 					
 				}
 			}
-			if(login==false) {
-				System.err.println("Usuario o Contraseña incorrectos. Vuelva a introducir los datos");
-			}
-		} while (login == false);
+			//Bucle para que vuelva a ejecutarse si se han introducido mal los datos
+		} while (login == true);
 		return emp;
 	}
 

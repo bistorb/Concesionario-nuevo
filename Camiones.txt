@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-Camiones:
-3
-Matricula:
-=======
 Camión:
 3
 Matrícula:
->>>>>>> branch 'master' of https://github.com/bistorb/Concesionario-nuevo
 8387DWB
 Marca:
 Mercedes
@@ -14,36 +8,9 @@ Modelo:
 Actros
 Color:
 Blanco
+Capacidad:
+3500
 Precio:
-<<<<<<< HEAD
-3500,0
-Capacidad de carga:
-24000
-Matricula:
-6753AVC
-Marca:
-Scania
-Modelo:
-Bestia
-Color:
-Negro
-Precio:
-4000,0
-Capacidad de carga:
-29000
-Matricula:
-5543GHB
-Marca:
-Volvo
-Modelo:
-Titan
-Color:
-Transparente
-Precio:
-4200,0
-Capacidad de carga:
-89000
-=======
 24000
 Matrícula:
 6753AVC
@@ -69,4 +36,3 @@ Capacidad:
 4200
 Precio:
 89000
->>>>>>> branch 'master' of https://github.com/bistorb/Concesionario-nuevo
