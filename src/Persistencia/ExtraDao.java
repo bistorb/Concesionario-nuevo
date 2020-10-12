@@ -16,7 +16,7 @@ public class ExtraDao {
 		Scanner in = new Scanner(new FileReader("Extras.txt"));
 		in.next();
 		int contador = in.nextInt();
-		// Leer beca
+		// Leer extra
 
 		for (int i = 0; i < contador; i++) {
 			in.next();

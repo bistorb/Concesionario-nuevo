@@ -1,5 +1,9 @@
 Extras:
+<<<<<<< HEAD
 2
+=======
+3
+>>>>>>> branch 'master' of https://github.com/bistorb/Concesionario-nuevo
 id:
 1
 descripción:
@@ -8,3 +12,10 @@ id:
 2
 descripción:
 Lunas Tintadas
+<<<<<<< HEAD
+=======
+id:
+3
+descripción:
+hola
+>>>>>>> branch 'master' of https://github.com/bistorb/Concesionario-nuevo
