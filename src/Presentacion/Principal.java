@@ -42,7 +42,8 @@ class Principal {
 				System.out.println("05| Eliminar un vehiculo");
 				System.out.println("06| Mostrar todos los extras");
 				System.out.println("07| Insertar un extra");
-				System.out.println("08| Salir");
+				System.out.println("08| Eliminar un extra");
+				System.out.println("09| Salir");
 				opcion = sc.nextInt();
 
 				switch (opcion) {
@@ -68,6 +69,9 @@ class Principal {
 					insertarExtra(extras);
 					break;
 				case 8:
+					eliminarExtra(extras, sc);
+					break;
+				case 9:
 					System.out.println("¡Hasta la próxima!");
 					break;
 				default:
@@ -78,7 +82,26 @@ class Principal {
 				System.err.println("Introduzca un número. ");
 				sc.nextLine();
 			}
-		} while (opcion != 13);
+		} while (opcion != 9);
+	}
+	
+	public static void eliminarExtra(ArrayList<Extra> extras, Scanner sc) throws IOException {
+		System.out.println("Indica el Id");
+		int id = sc.nextInt();
+		boolean encontrado = false;
+		for (int i = 0; i < extras.size(); i++) {
+			if (extras.get(i).getId()==id) {
+				extras.remove(i);
+				Extra delExtra = new Extra();
+				delExtra.escribir(extras);
+				encontrado = true;
+				break;
+			}
+		}
+
+		if (encontrado == false) {
+			System.out.printf("No existe la beca con el Id %s\n", id);
+		}		
 	}
 
 	public static void insertarExtra(ArrayList<Extra>extras) throws ClassNotFoundException {
@@ -110,9 +133,10 @@ class Principal {
 		System.out.println("Introduzca la descripcion");
 		sc.nextLine();
 		String descripcion = sc.nextLine();
-
+		
 		Extra newExtra = new Extra(id, descripcion);
 		//Llama al método insertar en la clase ExtraDao
+		extras.add(newExtra);
 		newExtra.escribir(extras);
 	}
 
@@ -125,7 +149,7 @@ class Principal {
 	}
 
 
-	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, ArrayList<Extra>extras,Scanner sc) throws IOException {
+	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, ArrayList<Extra>extras, Scanner sc) throws IOException {
 		System.out.println("Indica la matricula");
 		String matricula = sc.next();
 		boolean encontrado = false;

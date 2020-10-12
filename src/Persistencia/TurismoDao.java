@@ -83,7 +83,6 @@ public class TurismoDao extends VehiculoDao {
 			out.println(((Turismo)vehiculos.get(i)).getNumpuertas());
 			out.println("Extra:");
 			out.println(((Turismo)vehiculos.get(i)).getExtras().getId());
-
 		}
 		out.close();
 	} catch (FileNotFoundException e) {
@@ -92,7 +91,6 @@ public class TurismoDao extends VehiculoDao {
 		System.out.println("Excepcion de entrada/salida:" + e.toString());
 		System.out.println(e.getMessage());
 	}
-
 }
 	
 	public Vehiculo leer1(String matricula) throws ClassNotFoundException {
