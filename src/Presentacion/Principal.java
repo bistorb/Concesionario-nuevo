@@ -110,6 +110,7 @@ class Principal {
 		System.out.println("Introduzca la descripcion");
 		sc.nextLine();
 		String descripcion = sc.nextLine();
+
 		Extra newExtra = new Extra(id, descripcion);
 		//Llama al método insertar en la clase ExtraDao
 		newExtra.escribir(extras);
@@ -124,214 +125,166 @@ class Principal {
 	}
 
 
-	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, ArrayList<Extra>extras,Scanner sc) throws IOException, ClassNotFoundException {
-		Vehiculo modTurismo = new Turismo();
-		Vehiculo modCamion = new Camion();
-		//Se identifica al vehiculo por su matricula
+	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, ArrayList<Extra>extras,Scanner sc) throws IOException {
 		System.out.println("Indica la matricula");
-		String Matricula = sc.next();
-		modTurismo = modTurismo.leerVehiculos(Matricula);
-		modCamion = modCamion.leerVehiculos(Matricula);
-		//En caso de que exista el vehículo con la matrícula:
-		if (modTurismo != null || modCamion != null) {
-			System.out.println("¿Qué deseas modificar?");
-			System.out.println("1. Matricula");
-			System.out.println("2. Marca");
-			System.out.println("3. Modelo");
-			System.out.println("4. Color");
-			System.out.println("5. Precio");
-			if (modTurismo != null) {
-				System.out.println("6. Extra");
-			}
-			if (modCamion != null) {
-				System.out.println("6. Capacidad de carga");
-			}
-			int opcion = sc.nextInt();
-			switch (opcion) {
-			case 1:
-				boolean repetido = false;
-				do {
-					//Se pide la nueva matrícula por teclado
-					repetido = false;
+		String matricula = sc.next();
+		boolean encontrado = false;
+		for (int i = 0; i < camiones.size(); i++) {
+			if (camiones.get(i).getMatricula().equals(matricula)) {
+				System.out.println("¿Qué deseas modificar?");
+				System.out.println("1. Matricula");
+				System.out.println("2. Marca");
+				System.out.println("3. Modelo");
+				System.out.println("4. Color");
+				System.out.println("5. Capacidad");
+				System.out.println("6. Precio");
+				try {
+				int opcion = sc.nextInt();
+				switch (opcion) {
+				case 1:
 					System.out.println("Introduce la nueva matricula");
-					String matricula = sc.next();
-					Vehiculo existeTurismo = new Turismo();
-					existeTurismo = existeTurismo.leerVehiculos(matricula);
-					Vehiculo existeCamion = new Camion();
-					existeCamion = existeCamion.leerVehiculos(matricula);
-					if (existeTurismo != null) {
-						//En caso de que exista la matrícula en el algún turismo, le imprimirá el siguiente mensaje:
-						if (existeTurismo.getMatricula().equals(matricula)) {
-							System.out.println("Matricula repetida");
-							repetido = true;
+					String matricula1 = sc.next();
+					camiones.get(i).setMatricula(matricula1);
+					break;
+				case 2:
+					System.out.println("Introduce la nueva marca");
+					String marca = sc.next();
+					camiones.get(i).setMarca(marca);
+					break;
+				case 3:
+					System.out.println("Introduce el nuevo modelo");
+					String modelo = sc.next();
+					camiones.get(i).setModelo(modelo);
+					break;
+				case 4:
+					System.out.println("Introduce el nuevo color");
+					String color = sc.next();
+					camiones.get(i).setColor(color);
+					break;
+				case 5:
+					boolean seguir = false;
+					do {
+						seguir = false;
+						try {
+							System.out.println("Introduce la nueva capacidad");
+							int capacidad = sc.nextInt();
+							((Camion)camiones.get(i)).setCapacidadcarga(capacidad);
+							break;
+						} catch (InputMismatchException e) {
+							System.err.println("Introduzce solo números");
+							sc.nextLine();
+							seguir = true;
 						}
-					} else if (existeCamion != null) {
-						//En caso de que exista la matrícula en algún camion, le imprimirá el siguiente mensaje:
-						if (existeCamion.getMatricula().equals(matricula)) {
-							System.out.println("Matricula repetida");
-							repetido = true;
+					} while (seguir);
+					break;
+				case 6:
+					System.out.println("Introduce el nuevo precio");
+					int precio = sc.nextInt();
+					camiones.get(i).setPrecio(precio);
+					break;
+				}
+				encontrado = true;
+				Vehiculo modVehiculo = new Camion();
+				modVehiculo.escribir(camiones);
+				} catch (InputMismatchException e) {
+					System.err.println("Introduzce solo números");
+				}
+				}
+		}
+		
+		for (int i = 0; i < turismos.size(); i++) {
+			if (turismos.get(i).getMatricula().equals(matricula)) {
+				System.out.println("¿Qué deseas modificar?");
+				System.out.println("1. Matricula");
+				System.out.println("2. Marca");
+				System.out.println("3. Modelo");
+				System.out.println("4. Color");
+				System.out.println("5. Puertas");
+				System.out.println("6. Precio");
+				System.out.println("7. Extras");
+				try {
+				int opcion = sc.nextInt();
+				switch (opcion) {
+				case 1:
+					System.out.println("Introduce la nueva matricula");
+					String matricula1 = sc.next();
+					camiones.get(i).setMatricula(matricula1);
+					break;
+				case 2:
+					System.out.println("Introduce la nueva marca");
+					String marca = sc.next();
+					camiones.get(i).setMarca(marca);
+					break;
+				case 3:
+					System.out.println("Introduce el nuevo modelo");
+					String modelo = sc.next();
+					camiones.get(i).setModelo(modelo);
+					break;
+				case 4:
+					System.out.println("Introduce el nuevo color");
+					String color = sc.next();
+					camiones.get(i).setColor(color);
+					break;
+				case 5:
+					boolean seguir = false;
+					do {
+						seguir = false;
+						try {
+							System.out.println("Introduce el numero de puertas");
+							int numpuertas = sc.nextInt();
+							((Turismo)turismos.get(i)).setNumpuertas(numpuertas);
+							break;
+						} catch (InputMismatchException e) {
+							System.err.println("Introduzce solo números");
+							sc.nextLine();
+							seguir = true;
 						}
-					} else {
-
-						if (modTurismo != null) {
-							//En caso de que no exista la matrícula, se modificará la matrícula y le imprimirá el siguiente mensaje: 
-							modTurismo.setMatricula(matricula);
-							System.out.println("¡Se ha modificado la matrícula con éxito!");
-						}
-						if (modCamion != null) {
-							//En caso de que no exista la matrícula, se modificará la matrícula y le imprimirá el siguente mensaje:
-							modCamion.setMatricula(matricula);
-							System.out.println("¡Se ha modificado la matrícula con éxito!");
-						}
-					}
-				} while (repetido);
-				break;
-			case 2:
-				//Se pide la nueva marca por teclado 
-				System.out.println("Introduce la nueva marca");
-				sc.nextLine();
-				String marca = sc.nextLine();
-				if (modTurismo != null) {
-					//LLama a setMarca de Turismo y modifica la marca
-					modTurismo.setMarca(marca);
-					System.out.println("¡Se ha modificado la marca con éxito!");
-				}
-				if (modCamion != null) {
-					//LLama a setMarca de Camion y modifica la marca
-					modCamion.setMarca(marca);
-					System.out.println("¡Se ha modificado la marca con éxito!");
-				}
-				break;
-			case 3:
-				//Se pide el nuevo modelo por teclado
-				System.out.println("Introduce el nuevo modelo");
-				sc.nextLine();
-				String modelo = sc.nextLine();
-				if (modTurismo != null) {
-					//Llama a setModelo de Turismo y modifica el modelo
-					modTurismo.setModelo(modelo);
-					System.out.println("¡Se ha modificado el modelo con éxito!");
-				}
-				if (modCamion != null) {
-					//Llama a setModelo de Camion y modifica el modelo
-					modCamion.setModelo(modelo);
-					System.out.println("¡Se ha modificado el modelo con éxito!");
-				}
-				break;
-			case 4:
-				//Se pide el nuevo color por teclao
-				System.out.println("Introduce el nuevo color");
-				String color = sc.next();
-				if (modTurismo != null) {
-					//LLama a setColor de Turismo y modifica el color
-					modTurismo.setColor(color);
-					System.out.println("¡Se ha modificado el color con éxito!");
-				}
-				if (modCamion != null) {
-					//Llama a setColor de Camion y modifica el color
-					modCamion.setColor(color);
-					System.out.println("¡Se ha modificado el color con éxito!");
-				}
-				break;
-
-			case 5:
-				boolean seguir = false;
-				do {
-					seguir = false;
-					try {
-						//Se pide el nuevo precio por teclado
-						System.out.println("Introduce el nuevo precio");
-						double precio = sc.nextDouble();
-						if (modTurismo != null) {
-							//LLama a setPrecio y modifica el precio
-							modTurismo.setPrecio(precio);
-							System.out.println("¡Se ha modificado el precio con éxito!");
-						}
-						if (modCamion != null) {
-							//Llama a setPrecio y modifica el precio
-							modCamion.setPrecio(precio);
-							System.out.println("¡Se ha modificado el precio con éxito!");
-						}
-
-					} catch (InputMismatchException e) {
-						//En caso de introducir algo distinto a números, le imprimirá el siguiente mensaje:
-						System.err.println("Introduzce solo números");
-						sc.nextLine();
-						seguir = true;
-					}
-					//Bucle para que vuelva a ejecutarse si se han introducido mal los datos
-				} while (seguir);
-				break;
-
-			case 6:
-				//En caso de ser un Turismo a modificar:
-				if (modTurismo != null) {
+					} while (seguir);
+					break;
+				case 6:
+					System.out.println("Introduce el nuevo precio");
+					int precio = sc.nextInt();
+					camiones.get(i).setPrecio(precio);
+					break;
+				case 7:
 					seguir = false;
 					do {
 						seguir = false;
 						try {
-							//Se pide el nuevo extra por teclado
-							//mostrarTodosLosExtras();
 							System.out.println("Introduce el nuevo extra");
-							int extra = sc.nextInt();
-							Extra modExtra = new Extra(extra, Matricula);
-							modExtra = modExtra.leerExtras(extra);
-							if (modExtra == null) {
-								//En caso de que el extra no exista, se impimirá el siguiente mensaje:
-								seguir = true;
-								System.out.println("El extra no existe");
-
-							} else {
-								//En caso de que el extra si exista, se modificará y se imprimirá el siguiente mensaje:
-								((Turismo) modTurismo).setExtras(modExtra);
-								System.out.println("¡Se ha modificado el extra con éxito!");
+							int extra= sc.nextInt();
+							encontrado=false;
+							for(int j=0;j<extras.size();j++) {
+								if(extras.get(j).getId()==extra) {
+									encontrado=true;
+									((Turismo)turismos.get(i)).setExtras(extras.get(j));
+									break;
+								}
 							}
+							if(encontrado==false) {
+								Extra sinExtra = new Extra (0,"Sin extra");
+								((Turismo)turismos.get(i)).setExtras(sinExtra);
+
+							}
+							break;
 						} catch (InputMismatchException e) {
-							//En caso de introducir algo distinto a números, le imprimirá el siguiente mensaje:
 							System.err.println("Introduzce solo números");
 							sc.nextLine();
 							seguir = true;
 						}
-						//Bucle para que vuelva a ejecutarse si se han introducido mal los datos
 					} while (seguir);
+					break;
 				}
-				//En caso de ser un Camion a modificar:
-				if (modCamion != null) {
-					seguir = false;
-					do {
-						seguir = false;
-						try {
-							//Se pide la nueva capacidad de carga por teclado
-							System.out.println("Introduce la nueva capacidad de carga");
-							int capacidadcarga = sc.nextInt();
-							//LLama al método setCapacidadcarga, modifica la carga y le imprimirá el siguiente mensaje:
-							((Camion) modCamion).setCapacidadcarga(capacidadcarga);
-							System.out.println("¡Se ha modificado la capacidad de carga con éxito!");
-
-						} catch (InputMismatchException e) {
-							//En caso de introducir algo distinto a números, le imprimirá el siguiente mensaje:
-							System.err.println("Introduzce solo números");
-							sc.nextLine();
-							seguir = true;
-						}
-						//Bucle para que vuelva a ejecutarse si se han introducido mal los datos
-					} while (seguir);
+				Vehiculo modVehiculo = new Turismo();
+				modVehiculo.escribir(turismos);
+				} catch (InputMismatchException e) {
+					System.err.println("Introduzce solo números");
 				}
-				break;
-
-			}
-			if (modTurismo != null) {
-				//LLama al método actualizar de TurismoDao y actualiza la BBDD con las nuevas modificaciones
-				modTurismo.escribir(turismos);
-
-			} else if (modCamion != null) {
-				//LLama al método actualizar de CamionDao y actualiza la BBDD con las nuevas modificaciones
-				modCamion.escribir(camiones);
-
-			}
-			//En caso de no encontrar ningún vehículo con dicha matrícula, le imprimirá el siguiente mensaje:
-		} else {
-			System.out.printf("No existe el vehiculo con la matricula %s\n", Matricula);
+				}
+		}
+		
+		if (encontrado == false) {
+			System.out.printf("No existe el vehiculo con matricula %s\n", matricula);
 
 		}
 

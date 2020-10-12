@@ -30,7 +30,8 @@ public class CamionDao extends VehiculoDao  {
 			String color = in.next();
 			in.next();
 			double precio=in.nextDouble();
-			in.next();
+			in.nextLine();
+			in.nextLine();			
 			int capacidadcarga = in.nextInt();
 
 			Vehiculo vehiculo = new Camion(matricula, marca, modelo, color, precio, capacidadcarga);
@@ -61,7 +62,9 @@ public class CamionDao extends VehiculoDao  {
 			out.println("Color:");
 			out.println(vehiculos.get(i).getColor());
 			out.println("Precio:");
-			out.println(vehiculos.get(i).getPrecio());
+			String precio =vehiculos.get(i).getPrecio()+"";
+			precio=precio.replace(".",",");
+			out.println(precio);
 			out.println("Capacidad de carga:");
 			String capacidadcarga=((Camion)vehiculos.get(i)).getCapacidadcarga()+"";
 			out.println(capacidadcarga);
