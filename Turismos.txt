@@ -7,7 +7,7 @@ Seat
 Modelo:
 León FR
 Color:
-Rojo
+Negro
 Precio:
 24000,0
 Numero de puertas:
@@ -15,7 +15,7 @@ Numero de puertas:
 Extra:
 1
 Matricula:
-1
+4
 Marca:
 1
 Modelo:
@@ -25,7 +25,7 @@ Color:
 Precio:
 1,0
 Numero de puertas:
-8
+1
 Extra:
 1
 Matricula:

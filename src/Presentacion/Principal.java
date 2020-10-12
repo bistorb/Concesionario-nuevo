@@ -58,7 +58,7 @@ class Principal {
 					insertarVehiculo(camiones, turismos, extras ,sc);
 					break;
 				case 4:
-					modificarVehiculo(camiones, turismos, extras ,sc);
+					modificarUnVehiculo();
 					break;
 				case 5:
 					eliminarVehiculo(camiones, turismos, sc);
@@ -155,173 +155,201 @@ class Principal {
 	}
 
 
-	public static void modificarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, ArrayList<Extra>extras, Scanner sc) throws IOException {
-		//Pide la matrícula por teclado
-		System.out.println("Indica la matricula");
-		String matricula = sc.next();
-		boolean encontrado = false;
-		//Bucle que recorre el fichero Camiones
-		for (int i = 0; i < camiones.size(); i++) {
-			//En caso de que la matricula exista
-			if (camiones.get(i).getMatricula().equals(matricula)) {
-				System.out.println("¿Qué deseas modificar?");
-				System.out.println("1. Matricula");
-				System.out.println("2. Marca");
-				System.out.println("3. Modelo");
-				System.out.println("4. Color");
-				System.out.println("5. Capacidad");
-				System.out.println("6. Precio");
-				try {
-				int opcion = sc.nextInt();
-				switch (opcion) {
-				case 1:
-					System.out.println("Introduce la nueva matricula");
-					String matricula1 = sc.next();
-					camiones.get(i).setMatricula(matricula1);
-					break;
-				case 2:
-					System.out.println("Introduce la nueva marca");
-					String marca = sc.next();
-					camiones.get(i).setMarca(marca);
-					break;
-				case 3:
-					System.out.println("Introduce el nuevo modelo");
-					String modelo = sc.next();
-					camiones.get(i).setModelo(modelo);
-					break;
-				case 4:
-					System.out.println("Introduce el nuevo color");
-					String color = sc.next();
-					camiones.get(i).setColor(color);
-					break;
-				case 5:
-					boolean seguir = false;
-					do {
+	//Método modificar un vehículo
+		public static void modificarUnVehiculo() throws IOException, ClassNotFoundException {
+			Vehiculo turismo = new Turismo();
+			ArrayList<Vehiculo> turismos=turismo.leer();
+			Vehiculo camion = new Camion();
+			ArrayList<Vehiculo> camiones=camion.leer();
+			Extra extra = new Extra();
+			ArrayList<Extra> extras=extra.leer();
+			
+			System.out.println("Indica la matrícula");
+			String matricula = sc.next();
+			boolean encontrado = false;
+			
+			for (int i = 0; i < camiones.size(); i++) {
+				if (camiones.get(i).getMatricula().equals(matricula)) {
+					System.out.println("¿Qué deseas modificar?");
+					System.out.println("1. Matrícula");
+					System.out.println("2. Marca");
+					System.out.println("3. Modelo");
+					System.out.println("4. Color");
+					System.out.println("5. Precio");
+					System.out.println("6. Capacidad");
+					try {
+					int opcion = sc.nextInt();
+					switch (opcion) {
+					case 1:
+						System.out.println("Introduce la nueva matrícula");
+						String newMatricula = sc.next();
+						camiones.get(i).setMatricula(newMatricula);
+						break;
+					case 2:
+						System.out.println("Introduce la nueva marca");
+						String marca = sc.next();
+						camiones.get(i).setMarca(marca);
+						break;
+					case 3:
+						System.out.println("Introduce el nuevo modelo");
+						String modelo = sc.next();
+						camiones.get(i).setModelo(modelo);
+						break;
+					case 4:
+						System.out.println("Introduce el nuevo color");
+						String color = sc.next();
+						camiones.get(i).setColor(color);
+						break;
+					
+					case 5:
+						boolean seguir = false;
+						do {
+							seguir = false;
+							try {
+								System.out.println("Introduce el nuevo precio");
+								double precio = sc.nextDouble();
+								camiones.get(i).setPrecio(precio);
+								break;
+							} catch (InputMismatchException e) {
+								System.err.println("Introduzce solo números");
+								sc.nextLine();
+								seguir = true;
+							}
+						} while (seguir);
+						break;
+					
+					case 6:
 						seguir = false;
-						try {
-							System.out.println("Introduce la nueva capacidad");
-							int capacidad = sc.nextInt();
-							((Camion)camiones.get(i)).setCapacidadcarga(capacidad);
+						do {
+							seguir = false;
+							try {
+								System.out.println("Introduce la nueva capacidad");
+								int capacidad = sc.nextInt();
+								((Camion)camiones.get(i)).setCapacidadcarga(capacidad);
+								break;
+							} catch (InputMismatchException e) {
+								System.err.println("Introduzce solo números");
+								sc.nextLine();
+								seguir = true;
+							}
+						} while (seguir);
+						break;
+					}
+					encontrado = true;
+					Vehiculo modVehiculo = new Camion();
+					modVehiculo.escribir(camiones);
+					} catch (InputMismatchException e) {
+						System.err.println("Introduzce solo números");
+					}
+					}
+			}
+			
+			for (int i = 0; i < turismos.size(); i++) {
+				if (turismos.get(i).getMatricula().equals(matricula)) {
+					System.out.println("¿Qué deseas modificar?");
+					System.out.println("1. Matrícula");
+					System.out.println("2. Marca");
+					System.out.println("3. Modelo");
+					System.out.println("4. Color");
+					System.out.println("5. Puertas");
+					System.out.println("6. Precio");
+					System.out.println("7. Extras");
+					try {
+						int opcion = sc.nextInt();
+						switch (opcion) {
+						case 1:
+							System.out.println("Introduce la nueva matrícula");
+							String newMatricula = sc.next();
+							turismos.get(i).setMatricula(newMatricula);
 							break;
-						} catch (InputMismatchException e) {
-							System.err.println("Introduzce solo números");
-							sc.nextLine();
-							seguir = true;
-						}
-					} while (seguir);
-					break;
-				case 6:
-					System.out.println("Introduce el nuevo precio");
-					int precio = sc.nextInt();
-					camiones.get(i).setPrecio(precio);
-					break;
-				}
-				encontrado = true;
-				Vehiculo modVehiculo = new Camion();
-				modVehiculo.escribir(camiones);
-				} catch (InputMismatchException e) {
-					System.err.println("Introduzce solo números");
-				}
-				}
-		}
-		
-		for (int i = 0; i < turismos.size(); i++) {
-			if (turismos.get(i).getMatricula().equals(matricula)) {
-				System.out.println("¿Qué deseas modificar?");
-				System.out.println("1. Matricula");
-				System.out.println("2. Marca");
-				System.out.println("3. Modelo");
-				System.out.println("4. Color");
-				System.out.println("5. Puertas");
-				System.out.println("6. Precio");
-				System.out.println("7. Extras");
-				try {
-				int opcion = sc.nextInt();
-				switch (opcion) {
-				case 1:
-					System.out.println("Introduce la nueva matricula");
-					String matricula1 = sc.next();
-					camiones.get(i).setMatricula(matricula1);
-					break;
-				case 2:
-					System.out.println("Introduce la nueva marca");
-					String marca = sc.next();
-					camiones.get(i).setMarca(marca);
-					break;
-				case 3:
-					System.out.println("Introduce el nuevo modelo");
-					String modelo = sc.next();
-					camiones.get(i).setModelo(modelo);
-					break;
-				case 4:
-					System.out.println("Introduce el nuevo color");
-					String color = sc.next();
-					camiones.get(i).setColor(color);
-					break;
-				case 5:
-					boolean seguir = false;
-					do {
-						seguir = false;
-						try {
-							System.out.println("Introduce el numero de puertas");
-							int numpuertas = sc.nextInt();
-							((Turismo)turismos.get(i)).setNumpuertas(numpuertas);
+						case 2:
+							System.out.println("Introduce la nueva marca");
+							String marca = sc.next();
+							turismos.get(i).setMarca(marca);
 							break;
-						} catch (InputMismatchException e) {
-							System.err.println("Introduzce solo números");
-							sc.nextLine();
-							seguir = true;
-						}
-					} while (seguir);
-					break;
-				case 6:
-					System.out.println("Introduce el nuevo precio");
-					int precio = sc.nextInt();
-					camiones.get(i).setPrecio(precio);
-					break;
-				case 7:
-					seguir = false;
-					do {
-						seguir = false;
-						try {
-							System.out.println("Introduce el nuevo extra");
-							int extra= sc.nextInt();
-							encontrado=false;
-							for(int j=0;j<extras.size();j++) {
-								if(extras.get(j).getId()==extra) {
-									encontrado=true;
-									((Turismo)turismos.get(i)).setExtras(extras.get(j));
+						case 3:
+							System.out.println("Introduce el nuevo modelo");
+							String modelo = sc.next();
+							turismos.get(i).setModelo(modelo);
+							break;
+						case 4:
+							System.out.println("Introduce el nuevo color");
+							String color = sc.next();
+							turismos.get(i).setColor(color);
+							break;
+						case 5:
+							boolean seguir = false;
+							do {
+								seguir = false;
+								try {
+									System.out.println("Introduce el nuevo número de puertas");
+									int numPuertas = sc.nextInt();
+									((Turismo)turismos.get(i)).setNumpuertas(numPuertas);
 									break;
+								} catch (InputMismatchException e) {
+									System.err.println("Introduzce solo números");
+									sc.nextLine();
+									seguir = true;
 								}
-							}
-							if(encontrado==false) {
-								Extra sinExtra = new Extra (0,"Sin extra");
-								((Turismo)turismos.get(i)).setExtras(sinExtra);
-
-							}
+							} while (seguir);
 							break;
-						} catch (InputMismatchException e) {
-							System.err.println("Introduzce solo números");
-							sc.nextLine();
-							seguir = true;
-						}
-					} while (seguir);
-					break;
-				}
-				Vehiculo modVehiculo = new Turismo();
-				modVehiculo.escribir(turismos);
-				} catch (InputMismatchException e) {
-					System.err.println("Introduzce solo números");
-				}
-				}
-		}
-		
-		if (encontrado == false) {
-			System.out.printf("No existe el vehiculo con matricula %s\n", matricula);
+						case 6:
+							seguir = false;
+							do {
+								seguir = false;
+								try {
+									System.out.println("Introduce el nuevo precio");
+									double precio = sc.nextDouble();
+									turismos.get(i).setPrecio(precio);
+									break;
+								} catch (InputMismatchException e) {
+									System.err.println("Introduzce solo números");
+									sc.nextLine();
+									seguir = true;
+								}
+							} while (seguir);
+							break;
+						case 7:
+							seguir = false;
+							do {
+								seguir = false;
+								try {
+									System.out.println("Introduce el nuevo extra");
+									int newExtra= sc.nextInt();
+									encontrado=false;
+									for(int j=0;j<extras.size();j++) {
+										if(extras.get(j).getId()==newExtra) {
+											encontrado=true;
+											((Turismo)turismos.get(i)).setExtras(extras.get(j));
+											break;
+										}
+									}
+									if(encontrado==false) {
+										Extra sinExtra = new Extra (0,"Sin extra");
+										((Turismo)turismos.get(i)).setExtras(sinExtra);
 
+									}
+									break;
+								} catch (InputMismatchException e) {
+									System.err.println("Introduzce solo números");
+									sc.nextLine();
+									seguir = true;
+								}
+							} while (seguir);
+							break;
+					}
+					Vehiculo modVehiculo = new Turismo();
+					modVehiculo.escribir(turismos);
+					} catch (InputMismatchException e) {
+						System.err.println("Introduzce solo números");
+					}
+					}
+			}
+			
+			if (encontrado == false) {
+				System.out.printf("No existe ningún vehículo con la matricula %s\n", matricula);
+			}
 		}
-
-	}
 
 	public static void eliminarVehiculo(ArrayList<Vehiculo> camiones, ArrayList<Vehiculo> turismos, Scanner sc) throws IOException, ClassNotFoundException {
 		//Pide la matrícula por teclado
